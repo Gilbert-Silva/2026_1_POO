@@ -1,1 +1,1 @@
-print("Hello world")
+print("Hello world, TADS 2026.1")

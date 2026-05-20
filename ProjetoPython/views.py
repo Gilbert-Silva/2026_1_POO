@@ -14,7 +14,7 @@ class View: # nenhum print, nenhum input
     def cliente_autenticar(email, senha):
         for obj in View.cliente_listar():
             if obj.get_email() == email and obj.get_senha() == senha: 
-                return { "id": obj.id, "nome": obj.nome }
+                return { "id": obj.get_id(), "nome": obj.get_nome() }
         return None
 
     @staticmethod

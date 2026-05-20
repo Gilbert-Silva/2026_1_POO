@@ -1,6 +1,6 @@
 from views import View
-from Templates.uiadmin import UIAdmin
-from Templates.uicliente import UICliente
+from uiadmin import UIAdmin
+from uicliente import UICliente
 
 class UI: # classe estática -> não tem instância
     __usuario = None     

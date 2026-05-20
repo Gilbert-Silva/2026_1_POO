@@ -1,7 +1,6 @@
 from views import View
 
 class UIAdmin: # classe estática -> não tem instância
-
     def menu():
         print("Clientes   : 1-Inserir, 2-Listar, 3-Atualizar, 4-Excluir")
         print("Categorias : 5-Inserir, 6-Listar, 7-Atualizar, 8-Excluir")

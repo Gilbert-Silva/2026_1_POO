@@ -1,19 +1,19 @@
 # View acessa as classes do Modelo
-from Model.cliente import Cliente, ClienteDAO
-from Model.categoria import Categoria, CategoriaDAO
+from models.cliente import Cliente, ClienteDAO
+from models.categoria import Categoria, CategoriaDAO
 
 class View: # nenhum print, nenhum input
     @staticmethod
     def cliente_criar_admin():
         # cria o usuário admin se ele não existir
         for obj in View.cliente_listar():
-            if obj.email == "admin": return
+            if obj.get_email() == "admin": return
         View.cliente_inserir("admin", "admin", "(84)912345678", "1234") 
 
     @staticmethod
     def cliente_autenticar(email, senha):
         for obj in View.cliente_listar():
-            if obj.email == email and obj.senha == senha: 
+            if obj.get_email() == email and obj.get_senha() == senha: 
                 return { "id": obj.id, "nome": obj.nome }
         return None
 
@@ -38,7 +38,7 @@ class View: # nenhum print, nenhum input
 
     @staticmethod
     def cliente_excluir(id):
-        c = Cliente(id, "", "", "", "")
+        c = Cliente(id, "nome", "", "", "senha")
         ClienteDAO().excluir(c)
 
     def categoria_inserir(descricao):
@@ -56,6 +56,6 @@ class View: # nenhum print, nenhum input
         CategoriaDAO().atualizar(c)
 
     def categoria_excluir(id):
-        c = Categoria(id, "")
+        c = Categoria(id, "desc")
         CategoriaDAO().excluir(c)
         

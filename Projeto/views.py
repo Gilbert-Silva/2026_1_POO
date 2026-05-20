@@ -1,5 +1,6 @@
 # View acessa as classes do Modelo
-from cliente import Cliente, ClienteDAO
+from cliente import Cliente
+from clienteDAO_sql import ClienteDAO
 from categoria import Categoria, CategoriaDAO
 
 class View: # nenhum print, nenhum input

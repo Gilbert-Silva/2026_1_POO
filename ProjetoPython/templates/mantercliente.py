@@ -63,4 +63,3 @@ class ManterClienteUI:
                 st.success("Cliente excluído com sucesso")
                 time.sleep(2)
                 st.rerun()
-                

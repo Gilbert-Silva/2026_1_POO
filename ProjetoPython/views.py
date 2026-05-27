@@ -19,6 +19,9 @@ class View: # nenhum print, nenhum input
 
     @staticmethod
     def cliente_inserir(nome, email, fone, senha):
+        for cliente in View.cliente_listar():
+            if cliente.get_email() == email:
+                raise ValueError("E-mail já cadastrado")
         c = Cliente(0, nome, email, fone, senha)
         ClienteDAO().inserir(c)
         #(new ClienteDAO()).inserir(c) // Java
@@ -33,12 +36,15 @@ class View: # nenhum print, nenhum input
     
     @staticmethod
     def cliente_atualizar(id, nome, email, fone, senha):
+        for cliente in View.cliente_listar():
+            if cliente.get_id() != id and cliente.get_email() == email:
+                raise ValueError("E-mail já cadastrado")
         c = Cliente(id, nome, email, fone, senha)
         ClienteDAO().atualizar(c)
 
     @staticmethod
     def cliente_excluir(id):
-        c = Cliente(id, "nome", "", "", "senha")
+        c = Cliente(id, "nome", "email", "", "senha")
         ClienteDAO().excluir(c)
 
     def categoria_inserir(descricao):

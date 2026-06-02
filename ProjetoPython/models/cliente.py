@@ -1,4 +1,5 @@
 import json
+from models.dao import DAO
 
 class Cliente:
     def __init__(self, id, nome, email, fone, senha):
@@ -45,7 +46,17 @@ class Cliente:
     def from_json(dic):
         return Cliente(dic["id"], dic["nome"], dic["email"], dic["fone"], dic["senha"])
 
-class ClienteDAO:
+class ClienteDAO(DAO):
+    def __init__(self):
+        super().__init__(Cliente, "clientes.json")
+    
+    # Polimorfismo
+    def listar(self):
+        objetos = super().listar()
+        objetos.sort(key = lambda x : x.get_nome().upper())
+        return objetos
+
+class ClienteDAO2:
     def __init__(self):
         self.objetos = []
 

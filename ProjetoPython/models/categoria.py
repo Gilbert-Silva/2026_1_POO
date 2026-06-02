@@ -1,10 +1,14 @@
 import json
+from models.dao import DAO
 
 class Categoria:
     def __init__(self, id, descricao):
         self.set_id(id)
         self.set_descricao(descricao)
 
+    def __str__(self):
+        return f"{self.__id} - {self.__descricao}"
+    
     def get_id(self): return self.__id 
 
     def get_descricao(self): return self.__descricao
@@ -23,10 +27,16 @@ class Categoria:
         dic["descricao"] = self.__descricao
         return dic
 
-    def __str__(self):
-        return f"{self.__id} - {self.__descricao}"
-    
-class CategoriaDAO:
+    @staticmethod
+    def from_json(dic):
+        return Categoria(dic["id"], dic["descricao"])
+
+class CategoriaDAO(DAO):
+    def __init__(self):
+        super().__init__(Categoria, "categorias.json")
+
+
+class CategoriaDAO2:
     def __init__(self):
         self.objetos = []
 
@@ -71,7 +81,7 @@ class CategoriaDAO:
     def abrir(self):
         self.objetos = []
         try:
-            with open("clientes.json", mode="r") as arquivo:
+            with open("categorias.json", mode="r") as arquivo:
                 list_dic = json.load(arquivo)
                 for dic in list_dic:
                     c = Categoria.from_json(dic)
